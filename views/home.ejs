@@ -1,70 +1,165 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Safari Adventure Park</title>
-    <link rel="stylesheet" href="/css/style.css">
-</head>
-<body>
+<!-- Inclui o header (menu de navegação) -->
+<%- include('partials/header') %>
 
-    <!-- MAIN BANNER -->
-    <div style="position: relative;">
-        <img src="/images/choice/imagebanner5.png" alt="Safari Adventure Park" width="100%" style="max-height: 600px; object-fit: cover; display: block;">
-        <div style="position: absolute; bottom: 40px; left: 50px;">
-            <h1 style="color: white; font-size: 3em; margin: 0; text-shadow: 2px 2px 8px black;">Safari Adventure Park</h1>
-            <p style="color: white; font-size: 1.3em; margin: 0; text-shadow: 1px 1px 6px black;">Explore. Protect. Connect.</p>
+<!-- ====== BANNER PRINCIPAL ====== -->
+<section class="hero-banner">
+    <div class="hero-content">
+        <h1>Welcome to Safari Adventure Park</h1>
+        <p>Discover wildlife like never before!</p>
+    </div>
+</section>
+
+<!-- ====== BARRA DE HORÁRIOS (tem que estar MUITO visível!) ====== -->
+<section class="hours-bar">
+    <div class="hours-container">
+        <span class="hours-icon">🕐</span>
+        <span class="hours-text"><strong>Open every day</strong> from 9:00 to 18:00</span>
+        <span class="hours-badge">Last entry: 17:00</span>
+    </div>
+</section>
+
+<!-- ====== CARROSSEL DAS ZONAS ====== -->
+<section class="carousel-section">
+    <h2>Explore Our Habitats</h2>
+    <p class="section-subtitle">Four incredible worlds waiting for you</p>
+    
+    <div class="carousel-container">
+        <!-- Botão anterior -->
+        <button class="carousel-btn prev-btn" onclick="moveCarousel(-1)" aria-label="Previous">
+            &#10094;
+        </button>
+        
+        <!-- Track do carrossel -->
+        <div class="carousel-track" id="carouselTrack">
+            <!-- Item 1: Savannah -->
+            <div class="carousel-item active">
+                <img src="/images/choice/savannah/savannah1.jpg" alt="Savannah Plains">
+                <div class="carousel-caption">
+                    <h3>Savannah Plains</h3>
+                    <p>Lions, zebras and giraffes in the wild</p>
+                </div>
+            </div>
+            
+            <!-- Item 2: Outback -->
+            <div class="carousel-item">
+                <img src="/images/choice/australianoutback/outback1.jpg" alt="Outback Adventure">
+                <div class="carousel-caption">
+                    <h3>Outback Adventure</h3>
+                    <p>Kangaroos, emus and Australian wildlife</p>
+                </div>
+            </div>
+            
+            <!-- Item 3: Reptile -->
+            <div class="carousel-item">
+                <img src="/images/choice/reptile/reptile1.jpg" alt="Reptile World">
+                <div class="carousel-caption">
+                    <h3>Reptile World</h3>
+                    <p>Discover the fascinating world of reptiles</p>
+                </div>
+            </div>
+            
+            <!-- Item 4: Rainforest -->
+            <div class="carousel-item">
+                <img src="/images/choice/rainforest/rainforest1.jpg" alt="Rainforest Canopy">
+                <div class="carousel-caption">
+                    <h3>Rainforest Canopy</h3>
+                    <p>Adventure in the Amazon treetops</p>
+                </div>
+            </div>
         </div>
+        
+        <!-- Botão seguinte -->
+        <button class="carousel-btn next-btn" onclick="moveCarousel(1)" aria-label="Next">
+            &#10095;
+        </button>
     </div>
     
-    <!-- ZONES CAROUSEL -->
-<div class="carousel-container">
-    <button class="carousel-btn left" onclick="moveCarousel(-1)">&#8249;</button>
+    <!-- Indicadores do carrossel -->
+    <div class="carousel-indicators">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+        <span class="dot" onclick="goToSlide(3)"></span>
+    </div>
+</section>
 
-    <div class="carousel-track">
-        <div class="carousel-item" data-index="0">
-            <a href="/outback">
-                <img src="/images/choice/australianoutback/australianoutback3.png" alt="Australian Outback">
-                <p>Australian Outback</p>
-            </a>
+<!-- ====== EXPERIENCE 1 ====== -->
+<section class="feature-section">
+    <div class="feature-container">
+        <div class="feature-image">
+            <img src="/images/choice/savannah/feeding.jpg" alt="Feeding giraffes">
         </div>
-        <div class="carousel-item active" data-index="1">
-    <a href="/savannah">
-
-                <img src="/images/choice/savannah/savannahplains1.png" alt="Savannah Plains">
-                <p>Savannah Plains</p>
-            </a>
-        </div>
-        <div class="carousel-item" data-index="2">
-            <a href="/reptile">
-                <img src="/images/choice/reptile/reptileword5.png" alt="Reptile World">
-                <p>Reptile World</p>
-            </a>
-        </div>
-        <div class="carousel-item" data-index="3">
-            <a href="/rainforest">
-                <img src="/images/choice/rainforest/rainforestcanopy3.png" alt="Rainforest Canopy">
-                <p>Rainforest Canopy</p>
-            </a>
+        <div class="feature-content">
+            <h2>Feed the Giraffes</h2>
+            <p>A unique experience where you can hand-feed the giraffes. Learn about their diet and behaviour while creating unforgettable memories.</p>
+            <a href="/experiences" class="btn-primary">Learn More</a>
         </div>
     </div>
+</section>
 
-    <button class="carousel-btn right" onclick="moveCarousel(1)">&#8250;</button>
-</div>
+<!-- ====== EXPERIENCE 2 ====== -->
+<section class="feature-section reverse">
+    <div class="feature-container">
+        <div class="feature-image">
+            <img src="/images/choice/flightline/zipline.jpg" alt="Zipline adventure">
+        </div>
+        <div class="feature-content">
+            <h2>Zipline Adventure</h2>
+            <p>Glide through the treetops on our 200-metre zipline. Experience the thrill of flying over the rainforest.</p>
+            <a href="/experiences" class="btn-primary">Learn More</a>
+        </div>
+    </div>
+</section>
 
+<!-- ====== ACCOMMODATION ====== -->
+<section class="accommodation-section">
+    <h2>Stay With Us</h2>
+    <p>Enjoy an unforgettable stay in the heart of nature</p>
+    <div class="accommodation-grid">
+        <div class="accommodation-card">
+            <img src="/images/choice/hotel/lodge.jpg" alt="Safari Lodge">
+            <h3>Safari Lodge</h3>
+            <p>Rooms with savannah views</p>
+        </div>
+        <div class="accommodation-card">
+            <img src="/images/choice/hotel/glamping.jpg" alt="Glamping">
+            <h3>Glamping Experience</h3>
+            <p>Luxury camping under the stars</p>
+        </div>
+        <div class="accommodation-card">
+            <img src="/images/choice/hotel/treehouse.jpg" alt="Treehouse">
+            <h3>Treehouse Adventure</h3>
+            <p>Sleep in the treetops</p>
+        </div>
+    </div>
+</section>
 
-    <!-- JEEP SAFARI BANNER -->
+<!-- ====== QUICK CONTACT ====== -->
+<section class="quick-contact">
+    <h2>Contact Us</h2>
+    <p>Have questions? We're here to help!</p>
+    <a href="/contact" class="btn-primary">Get in Touch</a>
+</section>
 
-    <!-- FLIGHTLINE BANNER -->
+<!-- ====== QUICK FAQ ====== -->
+<section class="quick-faq">
+    <h2>Frequently Asked Questions</h2>
+    <div class="faq-grid">
+        <div class="faq-item">
+            <h3>What are the opening hours?</h3>
+            <p>Every day from 9:00 to 18:00.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Do I need to book?</h3>
+            <p>We recommend booking for special experiences.</p>
+        </div>
+        <div class="faq-item">
+            <h3>Is the park accessible?</h3>
+            <p>Yes, we have accessibility for all visitors.</p>
+        </div>
+    </div>
+    <a href="/faq" class="btn-secondary">View all FAQs</a>
+</section>
 
-    <!-- WILDHAVEN LODGE BANNER -->
-
-    <!-- CONTACT US -->
-
-    <!-- FAQS -->
-
-
-</body>
-
-</html>
-
+<!-- Inclui o footer (rodapé) -->
+<%- include('partials/footer') %>
